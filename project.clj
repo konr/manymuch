@@ -10,4 +10,5 @@
                  [midje "1.6.0" :exclusions [org.clojure/clojure]]
                  [com.stuartsierra/component "0.2.1"]
                  [com.datomic/datomic-free "0.9.4384"]
-                 [prismatic/schema "0.1.8"]])
+                 [prismatic/schema "0.1.8"]]
+  :main manymuch.core)

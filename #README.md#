@@ -9,37 +9,16 @@ Manymuch altcoins but how wealthy your portifolio actually is?
 
 ## Usage
 
-
-    ➜  manymuch git:(master) ✗ lein run 500 DOGE 10 BTC 50 LTC
-    Preparing databases
-    Reading from the Interweb
-    Converting
-    
-    | :name | :value |
-    |-------+--------|
-    |  DOGE |      2 |
-    |   BTC |  19228 |
-    |   LTC |   2500 |
-    | ----- |  ----- |
-    | TOTAL |  21730 |
+TBD
 
 
 ## TODO
 
-- use org-mode instead of this stupid markdown
-- clean mess at core.clj
-- tests
-- travis
-- schemas
 - Market names as enums
 - Persistent DB with history and pretty graphs
 - Daily email
 - Choose amongst the myriad forms of diplaying information
-- generalize distance logic
-- CLI
-- new markets
-- no R$
-- extract core datomic stuff
+- 
 
 ## License
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 

@@ -1,4 +1,5 @@
 (ns manymuch.core
+  (:gen-class)
   (:require [manymuch.markets :as mm]
             [manymuch.datomic.core :as db]
             [manymuch.models :as mo]
@@ -21,9 +22,11 @@
     (->> item (map-keys #(keyword "market" (name %)))
          db/transact-one)))
 
-(defn -main []
-  (gather-troops!)
-  (read-sources!))
+
+(defn arguments->wallet [args]
+  (->> args (partition 2)
+       (map (fn [[v k]] {(keyword k) (Double. v)}))
+       (into {})))
                                         ;
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;; TODO GENERALIZE ;;;
@@ -47,10 +50,32 @@
 ;;; TODO move to another place
 
 (defn conversion-strategies [from to]
-  (mapcat #(db/qes % from to) all-queries))
+  (mapcat #(db/qes % to from) all-queries))
 
 (defn convert-with-best-strategy [from to amount]
-  (apply max
-   (for [strategy (conversion-strategies from to)]
-     (->> strategy (map :market/for) (reduce * amount)))))
+  (apply max 0
+         (for [strategy (conversion-strategies from to)]
+           (->> strategy (map :market/for) (reduce * amount)))))
 
+
+(defn appraise-wallet [currency wallet]
+  (let [lines (map (fn [[coin amount]] {:name (name coin)
+                                       :value (-> coin name
+                                                  (convert-with-best-strategy currency amount)
+                                                  Math/round) }) wallet)]
+    (->>
+     [{:name "-----" :value "-----"}
+      {:name "TOTAL" :value (reduce + (map :value lines))}]
+     (concat lines)
+     clojure.pprint/print-table)))
+
+(def wallet->R$ (partial appraise-wallet "BRL"))
+
+
+(defn -main [& args]
+  (println "Preparing databases")
+  (gather-troops!)
+  (println "Reading from the Interweb")
+  (read-sources!)
+  (println "Converting")
+  (->> args arguments->wallet wallet->R$))
