@@ -24,7 +24,7 @@
     {:buy (:primarycode market)
      :with (:secondarycode market)
      :for (Double. (:lasttradeprice market))
-     :broker :cryptsy}))
+     :broker "Cryptsy"}))
 
 (defmethod last-trades :mercado-bitcoin [{:keys [url-btc url-ltc]}]
   (let [btc (get-json url-btc)
@@ -32,8 +32,18 @@
     [{:buy "BTC"
       :with "BRL"
       :for (get-in btc [:ticker :last])
-      :broker :mercado-bitcoin}
+      :broker "Mercado Bitcoin"}
      {:buy "LTC"
       :with "BRL"
       :for (get-in ltc [:ticker :last])
-      :broker :mercado-bitcoin}]))
+      :broker "Mercado Bitcoin"}]))
+
+
+(defn mirror-market-data [{:keys [buy with for broker] :as data}]
+  [data {:buy with :with buy :for (/ 1 for) :broker broker}])
+
+
+(defn get-market-data []
+  (->> markets
+       (mapcat last-trades)
+       (mapcat mirror-market-data)))

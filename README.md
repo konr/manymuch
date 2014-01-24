@@ -11,6 +11,13 @@ Manymuch altcoins but how wealthy your portifolio actually is?
 
 TBD
 
+
+## TODO
+
+- Market names as enums
+- Persistent DB with history and pretty graphs
+- Daily email
+
 ## License
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
                         Version 2, December 2004 
