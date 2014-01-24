@@ -92,6 +92,14 @@
   [query :- ls/Query, & args]
   (apply d/q query (db) args))
 
+(sm/defn qe :- #{ls/Entity}
+  [& args]
+  (map (comp eid->entity first) (apply q args)))
+
+(sm/defn qes :- #{[ls/Entity]}
+  [& args]
+  (map (partial map eid->entity) (apply q args)))
+
 (sm/defn transact :- ls/TxResults
   [data :- [ls/Entity]]
   (->> data (d/transact (:conn database)) deref))
