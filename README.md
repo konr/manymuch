@@ -1,8 +1,8 @@
 # wow
 
-64 dogecoins
-1337 megacoins
-42 trillion hayekcoins
+- 64 dogecoins
+- 1337 megacoins
+- 42 trillion hayekcoins
 
 Manymuch altcoins but how wealthy your portifolio actually is?
 
