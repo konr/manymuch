@@ -10,12 +10,16 @@
 ;; CORE ;;
 ;;;;;;;;;;
 
+(definterface Creatable
+  (create [])
+  (destroy []))
+
 (defonce database nil)
 
 (defrecord Database [uri conn seed schemata extensions]
-  component/Lifecycle
 
-  (start [component]
+  Creatable
+  (create [component]
     (d/create-database uri)
     (let [conn (d/connect uri)
           db   (d/db conn)]
@@ -26,20 +30,34 @@
       (-> component
           (assoc :uri   uri)
           (assoc :conn  conn))))
+
+  component/Lifecycle
+  (start [component]
+    (let [conn (d/connect uri)]
+      (-> component
+          (assoc :conn  conn))))
+
   (stop [component]))
 
 
 (defn db [] (d/db (:conn database)))
 
-(sm/defn ^:always-validate init-db!
+(sm/defn init-db!
   [data :- {:uri s/String
             :extensions [[ls/Entity]]
             :seed       [[ls/Entity]]
             :schemata   [[ls/Entity]]}]
   (->> data map->Database
-       .start
+       .create
        (constantly)
        (alter-var-root #'database)))
+
+(sm/defn connect!
+  [uri :- s/String]
+  (->> {:uri uri} map->Database
+       .start (constantly)
+       (alter-var-root #'database)))
+
 
 (sm/defn random-uri :- s/String []
   (str "datomic:mem://" (d/squuid)))
@@ -54,8 +72,6 @@
   [tx     :- ls/TxResults
    tempid :- ls/Eid]
   (d/resolve-tempid (db) (:tempids tx) tempid))
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Schema generation ;;

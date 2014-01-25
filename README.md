@@ -27,6 +27,8 @@ Manymuch altcoins but how wealthy your portifolio actually is?
 ## TODO
 
 - use org-mode instead of this stupid markdown
+- instructions on how to run a transactor
+- figure out why -main isn't exiting to the shell
 - clean mess at core.clj
 - tests
 - travis
