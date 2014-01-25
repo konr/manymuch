@@ -28,44 +28,43 @@
        (map (fn [[v k]] {(keyword k) (Double. v)}))
        (into {})))
                                         ;
-;;;;;;;;;;;;;;;;;;;;;;;
-;;; TODO GENERALIZE ;;;
-;;;;;;;;;;;;;;;;;;;;;;;
-
-(def distance-1
-  {:find '[?x]
-   :in '[$ ?from ?to]
-   :where '[[?x :market/buy ?to] [?x :market/with ?from]]})
-
-(def distance-2
-  {:find '[?x ?y]
-   :in '[$ ?from ?to]
-   :where '[[?x :market/buy ?to]
-            [?x :market/with ?x_name] [?y :market/buy ?x_name]
-            [?y :market/with ?from]]})
+(defn distance [depth]
+  (let [symbols (repeatedly depth (fn [] {:symbol (gensym '?symbol_) :name (gensym '?name_)}))]
+    {:find (map :symbol symbols)
+     :in '[$ ?from ?to]
+     :where (->> symbols (concat [{:name '?to}]) (partition 2 1)
+                 (mapcat (fn [[{name1 :name} {sym2 :symbol name2 :name}]]
+                           [[sym2 :market/buy name1] [sym2 :market/with name2]]))
+                 (concat [(list (-> symbols last :symbol) :market/with '?from)]))}))
 
 
-(def all-queries [distance-1 distance-2])
+(def all-queries (map distance (range 1 4)))
 
 ;;; TODO move to another place
 
 (defn conversion-strategies [from to]
+  ;; FIX figure WTF is going
+  ;; on with this wrong order
   (mapcat #(db/qes % to from) all-queries))
 
 (defn convert-with-best-strategy [from to amount]
+  (clojure.pprint/pprint [from to])
   (apply max 0
          (for [strategy (conversion-strategies from to)]
            (->> strategy (map :market/for) (reduce * amount)))))
 
 
 (defn appraise-wallet [currency wallet]
-  (let [lines (map (fn [[coin amount]] {:name (name coin)
-                                       :value (-> coin name
-                                                  (convert-with-best-strategy currency amount)
-                                                  Math/round) }) wallet)]
+  (let [value-kw (keyword (str "value-in-" currency))
+
+        lines (map (fn [[coin amount]] {:name (name coin)
+                                       :amount amount
+                                       value-kw (-> coin name
+                                                    (convert-with-best-strategy currency amount)
+                                                    Math/round) }) wallet)]
     (->>
-     [{:name "-----" :value "-----"}
-      {:name "TOTAL" :value (reduce + (map :value lines))}]
+     [{:name "-----" :amount "-----" value-kw "-----"}
+      {:name "TOTAL" :amount "" value-kw (reduce + (map value-kw lines))}]
      (concat lines)
      clojure.pprint/print-table)))
 
