@@ -19,7 +19,8 @@
 (defn -main [& args]
   (println "Connecting to the local database")
   (try (setup/connect! setup/disk-db)
-       (catch Exception e (do (println "Failed! Creating a memory database")
+      (catch Exception e (do (println "Failed! Creating a memory database")
                               (setup/init-db! setup/mem-db)
                               (update-db))))
-  (->> args arguments->wallet reads/wallet->R$))
+  (->> args arguments->wallet reads/wallet->R$)
+  (System/exit 0))
