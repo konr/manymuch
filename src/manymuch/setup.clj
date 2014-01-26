@@ -1,10 +1,10 @@
-(ns manymuch.setup
-  (:require [manymuch.datomic.core :as db]
-            [manymuch.models :as mo]))
+(ns shibeshibe.setup
+  (:require [shibeshibe.datomic.core :as db]
+            [shibeshibe.models :as mo]))
 
 
 (def mem-db  (db/random-uri))
-(def disk-db "datomic:free://localhost:4334/manymuch-1")
+(def disk-db "datomic:free://localhost:4334/shibeshibe-1")
 
 
 (defn connect! [uri]

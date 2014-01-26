@@ -1,7 +1,7 @@
-(ns manymuch.reads
-  (:require [manymuch.markets :as mm]
-            [manymuch.datomic.core :as db]
-            [manymuch.utils :refer :all]))
+(ns shibeshibe.reads
+  (:require [shibeshibe.markets :as mm]
+            [shibeshibe.datomic.core :as db]
+            [shibeshibe.utils :refer :all]))
 
 (defn distance [depth]
   (let [symbols (repeatedly depth (fn [] {:symbol (gensym '?symbol_) :name (gensym '?name_)}))]

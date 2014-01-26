@@ -1,6 +1,6 @@
-(ns manymuch.datomic.core
+(ns shibeshibe.datomic.core
   (:require [com.stuartsierra.component :as component]
-            [manymuch.datomic.schemata :as ls]
+            [shibeshibe.datomic.schemata :as ls]
             [schema.core :as s]
             [schema.macros :as sm]
             [datomic.api :as d]))

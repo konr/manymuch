@@ -1,4 +1,4 @@
-(ns manymuch.utils)
+(ns shibeshibe.utils)
 
 (defn map-keys [function map]
   (loop [[[k v] & tail :as all] (vec map) new-map {}]

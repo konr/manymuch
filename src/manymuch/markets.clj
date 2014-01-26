@@ -1,4 +1,4 @@
-(ns manymuch.markets
+(ns shibeshibe.markets
   (:require [org.httpkit.client :as http]
             [swiss-arrows.core  :refer :all]
             [cheshire.core      :as json]))

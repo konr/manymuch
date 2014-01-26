@@ -10,7 +10,7 @@ Manymuch altcoins but how wealthy your portifolio actually is?
 ## Usage
 
 
-    ➜  manymuch git:(master) ✗ lein run 500 DOGE 10 BTC 50 LTC
+    ➜  shibeshibe git:(master) ✗ lein run 500 DOGE 10 BTC 50 LTC
     Preparing databases
     Reading from the Interweb
     Converting

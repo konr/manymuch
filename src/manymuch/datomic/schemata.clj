@@ -1,4 +1,4 @@
-(ns manymuch.datomic.schemata
+(ns shibeshibe.datomic.schemata
   (:require [schema.core :as s]
             [schema.macros :as sm]))
 

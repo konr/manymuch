@@ -1,4 +1,4 @@
-(defproject manymuch "0.1.0-SNAPSHOT"
+(defproject shibeshibe "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -11,4 +11,4 @@
                  [com.stuartsierra/component "0.2.1"]
                  [com.datomic/datomic-free "0.9.4384"]
                  [prismatic/schema "0.1.8"]]
-  :main manymuch.core)
+  :main shibeshibe.core)

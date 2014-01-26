@@ -1,4 +1,4 @@
-(ns manymuch.models)
+(ns shibeshibe.models)
 
 
 (def market-model

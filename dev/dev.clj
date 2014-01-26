@@ -1,6 +1,6 @@
 (ns dev
-  (:require [manymuch.service :as service]
-            [manymuch.server :as server]
+  (:require [shibeshibe.service :as service]
+            [shibeshibe.server :as server]
             [io.pedestal.service.http :as bootstrap]
             [io.pedestal.service-tools.dev :as dev-tools :refer [watch tools-help]]))
 

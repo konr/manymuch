@@ -1,4 +1,4 @@
-(ns manymuch.service
+(ns shibeshibe.service
     (:require [io.pedestal.service.http :as bootstrap]
               [io.pedestal.service.http.route :as route]
               [io.pedestal.service.http.body-params :as body-params]
@@ -21,7 +21,7 @@
      ^:interceptors [(body-params/body-params) bootstrap/html-body]
      ["/about" {:get about-page}]]]])
 
-;; Consumed by manymuch.server/create-server
+;; Consumed by shibeshibe.server/create-server
 ;; See bootstrap/default-interceptors for additional options you can configure
 (def service {:env :prod
               ;; You can bring your own non-default interceptors. Make

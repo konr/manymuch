@@ -1,7 +1,7 @@
-(ns manymuch.server
+(ns shibeshibe.server
   (:gen-class) ; for -main method in uberjar
   (:require [io.pedestal.service.http :as bootstrap]
-            [manymuch.service :as service]))
+            [shibeshibe.service :as service]))
 
 (defonce server-instance nil)
 

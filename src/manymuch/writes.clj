@@ -1,7 +1,7 @@
-(ns manymuch.writes
-  (:require [manymuch.markets :as mm]
-            [manymuch.datomic.core :as db]
-            [manymuch.utils :refer :all]))
+(ns shibeshibe.writes
+  (:require [shibeshibe.markets :as mm]
+            [shibeshibe.datomic.core :as db]
+            [shibeshibe.utils :refer :all]))
 
 (defn read-sources! []
   (doseq [item (mm/get-market-data)]

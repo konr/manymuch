@@ -1,11 +1,11 @@
-(ns manymuch.core
+(ns shibeshibe.core
   (:gen-class)
-  (:require [manymuch.markets :as mm]
-            [manymuch.datomic.core :as db]
-            [manymuch.setup :as setup]
-            [manymuch.reads :as reads]
-            [manymuch.writes :as writes]
-            [manymuch.utils :refer :all]))
+  (:require [shibeshibe.markets :as mm]
+            [shibeshibe.datomic.core :as db]
+            [shibeshibe.setup :as setup]
+            [shibeshibe.reads :as reads]
+            [shibeshibe.writes :as writes]
+            [shibeshibe.utils :refer :all]))
 
 (defn arguments->wallet [args]
   (->> args (partition 2)
