@@ -20,5 +20,6 @@
 (def service {:env :prod
               ::bootstrap/routes routes
               ::bootstrap/resource-path "/public"
+              ::bootstrap/allowed-origins ["http://localhost"]
               ::bootstrap/type :jetty
               ::bootstrap/port 8080})

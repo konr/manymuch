@@ -80,7 +80,8 @@
   </script>
 
   <script type="text/javascript">
-    uri = ("http://" + location.hostname + ":" + location.port + "/api/convert");
+    port = "8080";
+    uri = ("http://" + location.hostname + ":" + port + "/api/convert");
     console.log();
     $("#input").on('input', function(e){
     req = {"wallet" : $("#input").val()};
