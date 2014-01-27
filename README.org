@@ -7,11 +7,14 @@
   Such altcoins! How much fiat money do you have, however?
 
 * Usage
-
-  If you want persistent storage, download [[https://my.datomic.com/downloads/free][Datomic]] and run a
-  transactor in your machine. Then follow the snippet below. If you
-  don't want persistent storage, just run `lein run convert ...`
-  without the bootstrap.
+  
+  There is now [[http://shibeshibe.com][http://shibeshibe.com]] for you to use without
+  installing anything.
+  
+  If you want to run locally with persistent storage, download [[https://my.datomic.com/downloads/free][Datomic]]
+  and run a transactor in your machine. Then follow the snippet below.
+  If you don't want persistent storage, just run `lein run convert
+  ...` without the bootstrap.
 
 #+BEGIN_SRC sh
 k♥t lein run bootstrap
