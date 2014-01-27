@@ -37,7 +37,7 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [8/22]
+* To do [9/25]
 - [X] clean mess at core.clj
 - [X] figure out why -main isn't exiting to the shell
 - [X] Use org-mode instead of this stupid markdown
@@ -61,7 +61,8 @@ k♥t
 - [ ] Use other currencies besides brazilian real
 - [ ] extract core datomic stuff
 - [ ] Daily email
-- [ ] donate button
+- [X] donate button
+- [ ] donate button with both coin (for BTC) and shibe
 - [ ] publish on reddit or somewhere
 
 * License
