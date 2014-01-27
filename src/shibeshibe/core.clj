@@ -13,7 +13,9 @@
   (println "Updating database")
   (writes/read-sources!))
 
+;; FIX optional argument to retry with memory database
 (defn connect []
+  (println "Connecting to the local database")
   (try (setup/connect! setup/disk-db)
        (catch Exception e (do (println "Failed! Creating a memory database")
                               (setup/init-db! setup/mem-db)
@@ -37,8 +39,8 @@
 
 (defmethod run "server" [_ args]
   (connect)
+  (println "Launching server")
   (apply server/create-server args))
 
 (defn -main [command & args]
-  (println "Connecting to the local database")
   (run command args))

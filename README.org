@@ -37,17 +37,18 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [6/19]
+* To do [7/22]
 - [X] clean mess at core.clj
 - [X] figure out why -main isn't exiting to the shell
 - [X] Use org-mode instead of this stupid markdown
 - [X] Shibe Shibe domain
 - [X] generalize distance logic
 - [X] CLI
-- [ ] Json
-- [ ] basic web page
+- [X] basic web page
+- [ ] deploy basic version
 - [ ] tests
 - [ ] travis
+- [ ] Better UI
 - [ ] instructions on how to run a transactor
 - [ ] schemas
 - [ ] Market names as enums

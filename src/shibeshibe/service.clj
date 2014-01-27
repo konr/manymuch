@@ -3,12 +3,17 @@
             [io.pedestal.service.http.route :as route]
             [io.pedestal.service.http.body-params :as body-params]
             [io.pedestal.service.http.route.definition :refer [defroutes]]
+            [shibeshibe.utils :refer :all]
             [shibeshibe.controller :as c]
             [ring.util.response :as ring-resp]))
 
-(defn parse-wallet [{:keys [json-params] :as request}]
+(def ♥ (atom nil))
+
+(defn parse-wallet [{:keys [form-params] :as request}]
+  (reset! ♥ request)
   {:status 200
-   :body (c/parse-wallet json-params)})
+   ;; FIX I want json-params, not form-params
+   :body (c/parse-wallet (map-keys keyword form-params))})
 
 (defroutes routes
   [[["/" ^:interceptors [(body-params/body-params) bootstrap/html-body]
