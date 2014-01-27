@@ -6,26 +6,24 @@
             [shibeshibe.server :as server]
             [shibeshibe.reads :as reads]
             [shibeshibe.writes :as writes]
+            [shibeshibe.controller :as c]
             [shibeshibe.utils :refer :all]))
-
-(defn arguments->wallet [args]
-  (->> args (partition 2)
-       (map (fn [[v k]] {(keyword k) (Double. v)}))
-       (into {})))
 
 (defn update-db []
   (println "Updating database")
   (writes/read-sources!))
 
+(defn connect []
+  (try (setup/connect! setup/disk-db)
+       (catch Exception e (do (println "Failed! Creating a memory database")
+                              (setup/init-db! setup/mem-db)
+                              (update-db)))))
 
 (defmulti run (fn [option _] option))
 
 (defmethod run "convert" [_ args]
-  (try (setup/connect! setup/disk-db)
-       (catch Exception e (do (println "Failed! Creating a memory database")
-                              (setup/init-db! setup/mem-db)
-                              (update-db))))
-  (->> args arguments->wallet reads/wallet->R$)
+  (connect)
+  (->> args c/tokens->wallet reads/wallet->R$)
   (System/exit 0))
 
 (defmethod run "update" [_ args]
@@ -38,6 +36,7 @@
   (System/exit 0))
 
 (defmethod run "server" [_ args]
+  (connect)
   (apply server/create-server args))
 
 (defn -main [command & args]

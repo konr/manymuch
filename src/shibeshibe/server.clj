@@ -28,3 +28,6 @@
 
 (defn servlet-service [this servlet-req servlet-resp]
   (server/servlet-service this servlet-req servlet-resp))
+
+
+(run-dev)

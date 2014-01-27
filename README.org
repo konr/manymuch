@@ -44,6 +44,8 @@ k♥t
 - [X] Shibe Shibe domain
 - [X] generalize distance logic
 - [X] CLI
+- [ ] Json
+- [ ] basic web page
 - [ ] tests
 - [ ] travis
 - [ ] instructions on how to run a transactor
