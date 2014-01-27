@@ -37,7 +37,7 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [7/22]
+* To do [8/22]
 - [X] clean mess at core.clj
 - [X] figure out why -main isn't exiting to the shell
 - [X] Use org-mode instead of this stupid markdown
@@ -45,7 +45,10 @@ k♥t
 - [X] generalize distance logic
 - [X] CLI
 - [X] basic web page
-- [ ] deploy basic version
+- [X] deploy basic version
+- [ ] cron to update the database
+- [ ] investigate why datomic is crashing - not enough memory?
+- [ ] hide the 8080
 - [ ] tests
 - [ ] travis
 - [ ] Better UI
