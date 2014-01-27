@@ -29,7 +29,6 @@
     <div id="wrapper">
       <h1>Convert your wallet to brazilian reais!</h1>
       <input id="input" type="text" value="5000 DOGE 12 LTC"></input>
-      <button id="query">-></button>
       <hr>
       <div id="results">
         | :name | :amount | :value-in-BRL |
@@ -59,9 +58,9 @@
     , lbl_amount: "DOGE"
     });
 
-    </script>
+  </script>
 
-<script src="http://cdn.bitmindo.com/dogecoin.min.js"></script>
+  <script src="http://cdn.bitmindo.com/dogecoin.min.js"></script>
 
   <script>
 
@@ -83,7 +82,7 @@
   <script type="text/javascript">
     uri = ("http://" + location.hostname + ":" + location.port + "/api/convert");
     console.log();
-    $("button#query").click(function(e){
+    $("#input").on('input', function(e){
     req = {"wallet" : $("#input").val()};
     $.post(uri, req, function(data){
     $("#results").html(data);

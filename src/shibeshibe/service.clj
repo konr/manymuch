@@ -7,10 +7,7 @@
             [shibeshibe.controller :as c]
             [ring.util.response :as ring-resp]))
 
-(def ♥ (atom nil))
-
 (defn parse-wallet [{:keys [form-params] :as request}]
-  (reset! ♥ request)
   {:status 200
    ;; FIX I want json-params, not form-params
    :body (c/parse-wallet (map-keys keyword form-params))})

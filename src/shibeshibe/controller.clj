@@ -4,7 +4,7 @@
 
 
 (defn tokens->wallet [args]
-  (->> args (partition 2)
+  (->> args (map str/upper-case) (partition 2)
        (map (fn [[v k]] {(keyword k) (Double. v)}))
        (into {})))
 
