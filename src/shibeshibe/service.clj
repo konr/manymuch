@@ -1,6 +1,7 @@
 (ns shibeshibe.service
   (:require [io.pedestal.service.http :as bootstrap]
             [io.pedestal.service.http.route :as route]
+            [io.pedestal.service.http.cors :as cors]
             [io.pedestal.service.http.body-params :as body-params]
             [io.pedestal.service.http.route.definition :refer [defroutes]]
             [shibeshibe.utils :refer :all]
@@ -14,7 +15,7 @@
 
 (defroutes routes
   [[["/" ^:interceptors [(body-params/body-params) bootstrap/html-body]
-     ["/api"
+     ["/api" ^:interceptors [(cors/allow-origin ["http://shibeshibe.com"])]
       ["/convert" {:post parse-wallet}]]]]])
 
 (def service {:env :prod
