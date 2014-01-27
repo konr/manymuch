@@ -1,30 +1,30 @@
 (ns shibeshibe.server
-  (:gen-class) ; for -main method in uberjar
-  (:require [io.pedestal.service.http :as bootstrap]
-            [shibeshibe.service :as service]))
+  (:require
+   [io.pedestal.service-tools.server :as server]
+   [io.pedestal.service-tools.dev :as dev]
+   [shibeshibe.service :as service]))
 
-(defonce server-instance nil)
-
-(defn create-server
-  [service]
-  (alter-var-root #'server-instance (constantly (bootstrap/create-server service))))
-
-(defn -main
-  "The entry-point for 'lein run'"
+(defn run-dev
+  "The entry-point for 'lein run-dev'"
   [& args]
-  (create-server (merge service/service (apply hash-map args)))
-  (bootstrap/start server-instance))
+  (dev/init service/service #'service/routes)
+  (apply dev/-main args))
+
+;; To implement your own server, copy io.pedestal.service-tools.server and
+;; customize it.
+
+(defn create-server [& args]
+  (server/init service/service)
+  (apply server/-main args))
 
 ;; Fns for use with io.pedestal.servlet.ClojureVarServlet
 
 (defn servlet-init [this config]
-  (alter-var-root #'server-instance (constantly (bootstrap/servlet-init service/service config))))
+  (server/init service/service)
+  (server/servlet-init this config))
 
 (defn servlet-destroy [this]
-  (alter-var-root #'server-instance bootstrap/servlet-destroy))
+  (server/servlet-destroy this))
 
 (defn servlet-service [this servlet-req servlet-resp]
-  (bootstrap/servlet-service server-instance servlet-req servlet-resp))
-
-
-
+  (server/servlet-service this servlet-req servlet-resp))

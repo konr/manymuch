@@ -10,5 +10,9 @@
                  [midje "1.6.0" :exclusions [org.clojure/clojure]]
                  [com.stuartsierra/component "0.2.1"]
                  [com.datomic/datomic-free "0.9.4384"]
-                 [prismatic/schema "0.1.8"]]
+                 [prismatic/schema "0.1.8"]
+                 ;; Service
+                 [io.pedestal/pedestal.service "0.2.2"]
+                 [io.pedestal/pedestal.service-tools "0.2.2"]
+                 [io.pedestal/pedestal.jetty "0.2.2"]]
   :main shibeshibe.core)
