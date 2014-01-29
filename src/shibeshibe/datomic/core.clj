@@ -121,7 +121,16 @@
   (->> data (d/transact (:conn database)) deref))
 
 (sm/defn transact-one :- ls/Eid
+  ([entity :- ls/Entity]
+      (let [id (:db/id entity)
+            tid (or id (tempid))
+            res (-> entity (assoc :db/id tid) vector transact)]
+        (or id (resolve-tx res tid)))))
+
+(sm/defn entity->eids :- [ls/Eid]
   [entity :- ls/Entity]
-  (let [tempid (tempid)]
-    (-> entity (assoc :db/id tempid)
-        vector transact (resolve-tx tempid))))
+  (map first (q {:find '[?e] :where (doall (for [[k v] entity] ['?e k v]))})))
+
+(sm/defn entity->eid :- ls/Eid
+  [entity :- ls/Entity]
+  (first (entity->eids entity)))

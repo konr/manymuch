@@ -16,9 +16,15 @@
   (loop [[[k v] & tail :as all] (vec map) new-map {}]
     (if-not (seq all) new-map (recur tail (assoc new-map k (function k v))))))
 
-
 (defn find-first [fn seq]
   (first (filter fn seq)))
 
 (defn or-die [item]
   (or item (throw (Exception. "Nil element!"))))
+
+(defn assoc-maybe [item & keypairs]
+  (loop [[k v & cetera] keypairs
+         item item]
+    (if (nil? k) item
+        (if (nil? v) (recur cetera item)
+            (recur cetera (assoc item k v))))))

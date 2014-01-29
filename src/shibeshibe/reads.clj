@@ -40,3 +40,4 @@
      clojure.pprint/print-table)))
 
 (def wallet->R$ (partial appraise-wallet "BRL"))
+
