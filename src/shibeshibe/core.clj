@@ -5,13 +5,8 @@
             [shibeshibe.setup :as setup]
             [shibeshibe.server :as server]
             [shibeshibe.reads :as reads]
-            [shibeshibe.writes :as writes]
             [shibeshibe.controller :as c]
             [shibeshibe.utils :refer :all]))
-
-(defn update-db []
-  (println "Updating database")
-  (writes/read-sources!))
 
 ;; FIX optional argument to retry with memory database
 (defn connect []
@@ -19,7 +14,7 @@
   (try (setup/connect! setup/disk-db)
        (catch Exception e (do (println "Failed! Creating a memory database")
                               (setup/init-db! setup/mem-db)
-                              (update-db)))))
+                              (c/update-db)))))
 
 (defmulti run (fn [option _] option))
 
@@ -30,7 +25,7 @@
 
 (defmethod run "update" [_ args]
   (setup/connect! setup/disk-db)
-  (update-db)
+  (c/update-db)
   (System/exit 0))
 
 (defmethod run "bootstrap" [_ args]

@@ -13,10 +13,19 @@
    ;; FIX I want json-params, not form-params
    :body (c/parse-wallet (map-keys keyword form-params))})
 
+(def password "such_shibe")
+
+(defn update-db []
+  {:status 200
+   :body "huaehua" #_(c/update-db)})
+
+
 (defroutes routes
   [[["/" ^:interceptors [(body-params/body-params) bootstrap/html-body]
      ["/api" ^:interceptors [(cors/allow-origin ["http://shibeshibe.com"])]
-      ["/convert" {:post parse-wallet}]]]]])
+      ["/convert" {:post parse-wallet}]
+      ["/admin" ;; ^:interceptors [(admin-shibe password)]
+       ["/update" {:post update-db}]]]]]])
 
 (def service {:env :prod
               ::bootstrap/routes routes

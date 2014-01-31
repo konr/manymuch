@@ -1,5 +1,6 @@
 (ns shibeshibe.controller
   (:require [clojure.string :as str]
+            [shibeshibe.writes :as writes]
             [shibeshibe.reads :as reads]))
 
 
@@ -13,3 +14,7 @@
       tokens->wallet
       reads/wallet->R$
       with-out-str))
+
+(defn update-db []
+  (println "Updating database")
+  (writes/read-sources!))

@@ -2,7 +2,8 @@
   (:require [shibeshibe.markets :as mm]
             [shibeshibe.datomic.core :as db]
             [shibeshibe.reads :as reads]
-            [shibeshibe.utils :refer :all]))
+            [shibeshibe.utils :refer :all]
+            [midje.sweet :refer :all]))
 
 (defn read-sources! []
   (doseq [item (mm/get-market-data)]
