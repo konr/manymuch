@@ -10,13 +10,20 @@
     :url-btc "https://www.mercadobitcoin.com.br/api/ticker/"
     :url-ltc "https://www.mercadobitcoin.com.br/api/ticker_litecoin/"}
    {:name :bitstamp
-    :url "https://www.bitstamp.net/api/ticker/"}])
+    :url "https://www.bitstamp.net/api/ticker/"}
+   {:name :kraken
+    :url "https://api.kraken.com/0/public/Ticker"}])
 
+
+(defn parse-json-body [res]
+  (assert (= 200 (:status res)))
+  (-> res :body (json/parse-string keyword)))
 
 (defn get-json [url]
-  (let [res @(http/get url)]
-    (assert (= 200 (:status res)))
-    (-> res :body (json/parse-string keyword))))
+  (parse-json-body @(http/get url)))
+
+(defn post-json [url options]
+  (parse-json-body @(http/post url options)))
 
 
 (defmulti last-trades :name)
@@ -47,6 +54,13 @@
       :for (Double. (:last btc))
       :broker "Bitstamp"}]))
 
+(defmethod last-trades :kraken [{:keys [url]}]
+  (let [res (post-json url {:query-params {:pair "XXBTZEUR"}})
+        last (get-in res [:result :XXBTZEUR :c 0])]
+    [{:buy "BTC"
+      :with "USD"
+      :for (Double. last)
+      :broker "Kraken"}]))
 
 (defn mirror-market-data [{:keys [buy with for broker] :as data}]
   [data {:buy with :with buy :for (/ 1 for) :broker broker}])

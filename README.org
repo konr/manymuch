@@ -7,10 +7,10 @@
   Such altcoins! How much fiat money do you have, however?
 
 * Usage
-  
+
   There is now [[http://shibeshibe.com][http://shibeshibe.com]] for you to use without
   installing anything.
-  
+
   If you want to run locally with persistent storage, download [[https://my.datomic.com/downloads/free][Datomic]]
   and run a transactor in your machine. Then follow the snippet below.
   If you don't want persistent storage, just run `lein run convert
@@ -40,34 +40,35 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [11/27]
-- [X] clean mess at core.clj
-- [X] figure out why -main isn't exiting to the shell
-- [X] Use org-mode instead of this stupid markdown
-- [X] Shibe Shibe domain
-- [X] generalize distance logic
-- [X] CLI
-- [X] basic web page
-- [X] deploy basic version
-- [X] hide the 8080
-- [X] donate button
-- [X] USD
-- [ ] Euros
-- [ ] tests
-- [ ] travis
-- [ ] Better UI
-- [ ] investigate why datomic is crashing - not enough memory?
-- [ ] cron to update the database
-- [ ] instructions on how to run a transactor
-- [ ] schemas
-- [ ] Market names as enums
-- [ ] Persistent DB with history and pretty graphs
-- [ ] Choose amongst the myriad forms of diplaying information
-- [ ] new markets
-- [ ] extract core datomic stuff
-- [ ] Daily email
-- [ ] donate button with both coin (for BTC) and shibe
-- [ ] publish on reddit or somewhere
+* To do [13/24]
+  - [X] clean mess at core.clj
+  - [X] figure out why -main isn't exiting to the shell
+  - [X] Use org-mode instead of this stupid markdown
+  - [X] Shibe Shibe domain
+  - [X] generalize distance logic
+  - [X] CLI
+  - [X] basic web page
+  - [X] deploy basic version
+  - [X] hide the 8080
+  - [X] donate button
+  - [X] USD
+  - [X] Euros
+  - [X] Better UI
+  - [ ] Tests
+  - [ ] Travis
+  - [ ] Schemas
+  - [ ] Cron to update the database
+  - [ ] Market names as enums
+  - [ ] Extract core datomic stuff
+  - [ ] History and pretty graphs
+  - [ ] Daily email
+  - [ ] Donate button with both coin (for BTC) and shibe
+
+* [[http://www.bitcoinity.org/markets/list?currency=EUR&span=24h][Markets]] to support
+  - [ ] mtgox (must get API key)
+  - [ ] kraken (coins other than EURO. Very annoying API)
+  - [ ] btc-e
+  - [ ] localbitcoins
 
 * License
 
