@@ -1,92 +1,126 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <style type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-      body {
-      background-color: #efe;
-      color: #333;
-      font-family: "Bangers", cursive;
-      }
+    <title>shibeshibe.com: Crypto->Fiat</title>
 
-      h1 {
-      font-size: 2cm;
-      letter-spacing: 2mm;
-      color: black;
-      }
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://bootswatch.com/amelia/bootstrap.min.css">
 
-      #results{
-      white-space: pre-wrap;
-      white-space: -moz-pre-wrap;
-      white-space: -o-pre-wrap;
-      font-family: monospace;
-      }
-    </style>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
   </head>
 
   <body>
-    <div id="wrapper">
-      <h1>Convert your wallet to brazilian reais!</h1>
-      <input id="input" type="text" value="5000 DOGE 12 LTC"></input>
-      <hr>
-      <div id="results">
-        | :name | :amount | :value-in-BRL |
-        |-------+---------+---------------|
-        |  DOGE |  5000.0 |            17 |
-        |   LTC |    12.0 |           759 |
-        | ----- |   ----- |         ----- |
-        | TOTAL |         |           776 |
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">API</a></li>
+        </ul>
+        <h3 class="text-muted"><a href="/index.html">shibeshibe.com</a></h3>
       </div>
-    </div>
+
+      <div class="jumbotron">
+
+        <h1>Convert your wallet to fiat currency!</h1>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input class="form-control" id="wallet" type="text" placeholder="5000 DOGE 12 LTC"></input>
+            </div>
+            <div class="col-sm-2">
+              <select class="form-control">
+                <option>BRL</option>
+              </select>
+            </div>
+        </form>
+
+        <div>
+          <pre>
+            <div id="results">
+              | :name | :amount | :value-in-BRL |
+              |-------+---------+---------------|
+              |  DOGE |  5000.0 |            17 |
+              |   LTC |    12.0 |           759 |
+              | ----- |   ----- |         ----- |
+              | TOTAL |         |           776 |
+            </div>
+          </pre>
+        </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      <script src="http://coinwidget.com/widget/coin.js"></script>
+      <script>
+        CoinWidgetCom.go({
+        wallet_address: "DH4kshUdJnNKPr8FLS4JEWgG16wYUuck63"
+        , currency: "dogecoin"
+        , counter: "amount"
+        , alignment: "bl"
+        , qrcode: true
+        , auto_show: false
+        , lbl_button: "Donate DOGE"
+        , lbl_address: "Tip Dogecoin to this Address:"
+        , lbl_amount: "DOGE"
+        });
+
+      </script>
+
+      <script src="http://cdn.bitmindo.com/dogecoin.min.js"></script>
+
+      <script>
+
+        CoinWidgetCom.go({
+        wallet_address: "1QAPF72Umhwy15xFimcipmeuReRCgvvg2c"
+        , currency: "bitcoin"
+        , counter: "amount"
+        , alignment: "bl"
+        , qrcode: true
+        , auto_show: false
+        , lbl_button: "Donate BTC"
+        , lbl_address: "My Bitcoin Address:"
+        , lbl_count: "donations"
+        , lbl_amount: "BTC"
+        });
+
+      </script>
+
+      <script type="text/javascript">
+        port = "8080";
+        uri = ("http://" + location.hostname + ":" + port + "/api/convert");
+        console.log();
+        $("#wallet").on('input', function(e){
+        req = {"wallet" : $("#wallet").val()};
+        $.post(uri, req, function(data){
+        $("#results").html(data);
+        });});
+      </script>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+         ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
   </body>
-
-
-  <hr>
-
-  <script src="http://coinwidget.com/widget/coin.js"></script>
-  <script>
-    CoinWidgetCom.go({
-    wallet_address: "DH4kshUdJnNKPr8FLS4JEWgG16wYUuck63"
-    , currency: "dogecoin"
-    , counter: "amount"
-    , alignment: "bl"
-    , qrcode: true
-    , auto_show: false
-    , lbl_button: "Donate DOGE"
-    , lbl_address: "Tip Dogecoin to this Address:"
-    , lbl_amount: "DOGE"
-    });
-
-  </script>
-
-  <script src="http://cdn.bitmindo.com/dogecoin.min.js"></script>
-
-  <script>
-
-    CoinWidgetCom.go({
-    wallet_address: "1QAPF72Umhwy15xFimcipmeuReRCgvvg2c"
-    , currency: "bitcoin"
-    , counter: "amount"
-    , alignment: "bl"
-    , qrcode: true
-    , auto_show: false
-    , lbl_button: "Donate BTC"
-    , lbl_address: "My Bitcoin Address:"
-    , lbl_count: "donations"
-    , lbl_amount: "BTC"
-    });
-
-  </script>
-
-  <script type="text/javascript">
-    port = "8080";
-    uri = ("http://" + location.hostname + ":" + port + "/api/convert");
-    console.log();
-    $("#input").on('input', function(e){
-    req = {"wallet" : $("#input").val()};
-    $.post(uri, req, function(data){
-    $("#results").html(data);
-    });});
-  </script>
 </html>
