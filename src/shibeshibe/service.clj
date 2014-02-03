@@ -21,9 +21,7 @@
 
 (defn update-db [context]
   {:status 200
-   :body
-   "Very protected!"
-   #_(c/update-db)})
+   :body (c/update-db)})
 
 (i/definterceptorfn admin-shibe [password]
   (i/interceptor
