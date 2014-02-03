@@ -58,7 +58,7 @@
   (let [res (post-json url {:query-params {:pair "XXBTZEUR"}})
         last (get-in res [:result :XXBTZEUR :c 0])]
     [{:buy "BTC"
-      :with "USD"
+      :with "EUR"
       :for (Double. last)
       :broker "Kraken"}]))
 
