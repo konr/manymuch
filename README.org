@@ -40,7 +40,7 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [10/26]
+* To do [11/27]
 - [X] clean mess at core.clj
 - [X] figure out why -main isn't exiting to the shell
 - [X] Use org-mode instead of this stupid markdown
@@ -50,6 +50,9 @@ k♥t
 - [X] basic web page
 - [X] deploy basic version
 - [X] hide the 8080
+- [X] donate button
+- [X] USD
+- [ ] Euros
 - [ ] tests
 - [ ] travis
 - [ ] Better UI
@@ -61,10 +64,8 @@ k♥t
 - [ ] Persistent DB with history and pretty graphs
 - [ ] Choose amongst the myriad forms of diplaying information
 - [ ] new markets
-- [ ] Use other currencies besides brazilian real
 - [ ] extract core datomic stuff
 - [ ] Daily email
-- [X] donate button
 - [ ] donate button with both coin (for BTC) and shibe
 - [ ] publish on reddit or somewhere
 
