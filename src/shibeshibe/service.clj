@@ -16,7 +16,7 @@
    :body (c/parse-wallet (map-keys keyword form-params))})
 
 (defn retrieve-password []
-  (try (slurp "/etc/shibeshibe.conf")
+  (try (.trim (slurp "/etc/shibeshibe.conf"))
        (catch Exception e "such_shibe")))
 
 (defn update-db [context]
