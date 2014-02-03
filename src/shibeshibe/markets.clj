@@ -8,7 +8,9 @@
     :url "http://pubapi.cryptsy.com/api.php?method=marketdatav2"}
    {:name :mercado-bitcoin
     :url-btc "https://www.mercadobitcoin.com.br/api/ticker/"
-    :url-ltc "https://www.mercadobitcoin.com.br/api/ticker_litecoin/"}])
+    :url-ltc "https://www.mercadobitcoin.com.br/api/ticker_litecoin/"}
+   {:name :bitstamp
+    :url "https://www.bitstamp.net/api/ticker/"}])
 
 
 (defn get-json [url]
@@ -37,6 +39,13 @@
       :with "BRL"
       :for (get-in ltc [:ticker :last])
       :broker "Mercado Bitcoin"}]))
+
+(defmethod last-trades :bitstamp [{:keys [url]}]
+  (let [btc (get-json url)]
+    [{:buy "BTC"
+      :with "USD"
+      :for (Double. (:last btc))
+      :broker "Bitstamp"}]))
 
 
 (defn mirror-market-data [{:keys [buy with for broker] :as data}]

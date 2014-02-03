@@ -4,7 +4,7 @@
 
 
 (def mem-db  (db/random-uri))
-(def disk-db "datomic:free://localhost:4334/shibeshibe-2")
+(def disk-db "datomic:free://localhost:4334/shibeshibe-3")
 
 
 (defn connect! [uri]
