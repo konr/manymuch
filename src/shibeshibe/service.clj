@@ -31,10 +31,25 @@
                  (assoc-in context [:response]
                            {:status 403  :body "very protected. much sorry."}))))))
 
+(def cat "
+    _                ___       _.--.
+    \\`.|\\..----...-'`   `-._.-'_.-'`
+    /  ' `         ,       __.--'
+    )/' _/     \\   `-_,   /
+    `-'\" `\"\\_  ,_.-;_.-\\_ ',     fsc/as
+        _.-'_./   {_.'   ; /
+       {_.-``-'         {_/ ")
+
+(i/definterceptorfn catcher []
+  (i/interceptor
+   :error (fn [context error]
+            (ii/terminate (assoc context :response {:status 200
+                                                    :body (str "Oops! Couldn't parse the wallet, but I found this cute cat:\n" cat)})))))
+
 
 (defroutes routes
-  [[["/" ^:interceptors [(body-params/body-params) bootstrap/html-body]
-     ["/api" ^:interceptors [(cors/allow-origin ["http://shibeshibe.com"])]
+  [[["/" ^:interceptors [(catcher) (body-params/body-params) bootstrap/html-body]
+     ["/api" ;;^:interceptors [(cors/allow-origin ["http://shibeshibe.com"])]
       ["/convert" {:post parse-wallet}]
       ["/admin" ^:interceptors [(admin-shibe (retrieve-password))]
        ["/update" {:post update-db}]]]]]])

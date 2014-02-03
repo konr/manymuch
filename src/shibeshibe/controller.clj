@@ -9,10 +9,10 @@
        (map (fn [[v k]] {(keyword k) (Double. v)}))
        (into {})))
 
-(defn parse-wallet [wallet]
-  (-> wallet :wallet (str/split #" ")
+(defn parse-wallet [{:keys [wallet fiat]}]
+  (->> (str/split wallet #" ")
       tokens->wallet
-      reads/wallet->R$
+      (reads/appraise-wallet fiat)
       with-out-str))
 
 (defn update-db []

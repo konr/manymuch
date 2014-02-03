@@ -46,13 +46,15 @@
               <input class="form-control" id="wallet" type="text" placeholder="5000 DOGE 12 LTC"></input>
             </div>
             <div class="col-sm-2">
-              <select class="form-control">
+              <select class="form-control" id="fiat">
                 <option>BRL</option>
+                <option>USD</option>
               </select>
             </div>
         </form>
 
-        <div>
+        <hr />
+        <div class="col-sm-12">
           <pre>
             <div id="results">
               | :name | :amount | :value-in-BRL |
@@ -106,14 +108,20 @@
       </script>
 
       <script type="text/javascript">
-        port = "8080";
-        uri = ("http://" + location.hostname + ":" + port + "/api/convert");
-        console.log();
-        $("#wallet").on('input', function(e){
-        req = {"wallet" : $("#wallet").val()};
+
+
+        update = function(e){
+        console.log("hause");
+        req = {"wallet" : $("#wallet").val(), "fiat": $("#fiat").val()};
         $.post(uri, req, function(data){
         $("#results").html(data);
-        });});
+        })}
+
+        port = "8080";
+        uri = ("http://" + location.hostname + ":" + port + "/api/convert");
+        $("#wallet").on('input', update);
+        $("#fiat").on('change', update);
+
       </script>
 
     </div> <!-- /container -->
