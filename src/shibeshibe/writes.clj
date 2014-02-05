@@ -7,6 +7,6 @@
 
 (defn read-sources! []
   (doseq [item (mm/get-market-data)]
-    (let [object (map-keys #(keyword "market" (name %)) item)
+    (let [object (.entity item)
           eid (-> object (select-keys [:market/broker :market/with :market/buy]) db/entity->eid)]
       (-> object (assoc-maybe :db/id eid) db/transact-one))))

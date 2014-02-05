@@ -15,8 +15,7 @@
 (def all-queries (map distance (range 1 4)))
 
 (defn conversion-strategies [from to]
-  ;; FIX figure WTF is going
-  ;; on with this wrong order
+  ;; FIX figure WTF is going on with this wrong order
   (mapcat #(db/qes % to from) all-queries))
 
 (defn convert-with-best-strategy [from to amount]
@@ -40,4 +39,3 @@
      clojure.pprint/print-table)))
 
 (def wallet->R$ (partial appraise-wallet "BRL"))
-

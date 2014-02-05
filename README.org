@@ -40,7 +40,7 @@ k♥t
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [13/24]
+* To do [14/22]
   - [X] clean mess at core.clj
   - [X] figure out why -main isn't exiting to the shell
   - [X] Use org-mode instead of this stupid markdown
@@ -54,14 +54,14 @@ k♥t
   - [X] USD
   - [X] Euros
   - [X] Better UI
+  - [X] Cron to update the database
+  - [ ] Extract core datomic stuff to another lib
+  - [ ] Schemas
   - [ ] Tests
   - [ ] Travis
-  - [ ] Schemas
-  - [ ] Cron to update the database
   - [ ] Market names as enums
-  - [ ] Extract core datomic stuff
-  - [ ] History and pretty graphs
   - [ ] Daily email
+  - [ ] History and pretty graphs
   - [ ] Donate button with both coin (for BTC) and shibe
 
 * [[http://www.bitcoinity.org/markets/list?currency=EUR&span=24h][Markets]] to support
