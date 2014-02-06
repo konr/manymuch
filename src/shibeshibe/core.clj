@@ -1,20 +1,13 @@
 (ns shibeshibe.core
   (:gen-class)
-  (:require [shibeshibe.markets :as mm]
+  (:require [shibeshibe.tasks.crawl-markets :as mm]
             [shibeshibe.datomic.core :as db]
-            [shibeshibe.setup :as setup]
-            [shibeshibe.server :as server]
-            [shibeshibe.reads :as reads]
+            [shibeshibe.models :as mo]
+            [shibeshibe.web.server :as server]
+            [shibeshibe.db.reads :as reads]
             [shibeshibe.controller :as c]
             [shibeshibe.utils :refer :all]))
 
-;; FIX optional argument to retry with memory database
-(defn connect []
-  (println "Connecting to the local database")
-  (try (setup/connect! setup/disk-db)
-       (catch Exception e (do (println "Failed! Creating a memory database")
-                              (setup/init-db! setup/mem-db)
-                              (c/update-db)))))
 
 (defmulti run (fn [option _] option))
 
@@ -39,3 +32,6 @@
 
 (defn -main [command & args]
   (run command args))
+
+;; --------------------------------
+

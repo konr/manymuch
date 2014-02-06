@@ -47,16 +47,11 @@
             :extensions [[ls/Entity]]
             :seed       [[ls/Entity]]
             :schemata   [[ls/Entity]]}]
-  (->> data map->Database
-       .create
-       (constantly)
-       (alter-var-root #'database)))
+  (.create (map->Database data)))
 
-(sm/defn connect!
+(sm/defn from-uri
   [uri :- s/String]
-  (->> {:uri uri} map->Database
-       .start (constantly)
-       (alter-var-root #'database)))
+  (map->Database {:uri uri}))
 
 
 (sm/defn random-uri :- s/String []
@@ -122,10 +117,10 @@
 
 (sm/defn transact-one :- ls/Eid
   ([entity :- ls/Entity]
-      (let [id (:db/id entity)
-            tid (or id (tempid))
-            res (-> entity (assoc :db/id tid) vector transact)]
-        (or id (resolve-tx res tid)))))
+     (let [id (:db/id entity)
+           tid (or id (tempid))
+           res (-> entity (assoc :db/id tid) vector transact)]
+       (or id (resolve-tx res tid)))))
 
 (sm/defn entity->eids :- [ls/Eid]
   [entity :- ls/Entity]

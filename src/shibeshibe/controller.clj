@@ -1,8 +1,7 @@
 (ns shibeshibe.controller
   (:require [clojure.string :as str]
-            [shibeshibe.writes :as writes]
-            [shibeshibe.reads :as reads]))
-
+            [shibeshibe.db.writes :as writes]
+            [shibeshibe.db.reads :as reads]))
 
 (defn tokens->wallet [args]
   (->> args (map str/upper-case) (partition 2)
