@@ -3,6 +3,10 @@
   :url "http://github.com/konr/shibeshibe"
   :license {:name "GPL"
             :url "http://www.gnu.org/licenses/"}
+
+  :plugins [[lein-midje "3.1.3"]
+            [lein-cloverage "1.0.2"]]
+
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [http-kit "2.1.16"]
                  [swiss-arrows "0.6.0"]
