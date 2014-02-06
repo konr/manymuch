@@ -1,5 +1,7 @@
 * wow
 
+  https://travis-ci.org/konr/shibeshibe.png?branch=master
+
 - 64 dogecoins
 - 1337 megacoins
 - 42 trillion bitcoins
@@ -7,6 +9,7 @@
   Such altcoins! How much fiat money do you have, however?
 
 * Usage
+
 
   There is now [[http://shibeshibe.com][http://shibeshibe.com]] for you to use without
   installing anything.
