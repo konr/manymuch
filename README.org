@@ -1,6 +1,4 @@
-* wow
-
-  [[https://travis-ci.org/konr/shibeshibe.png?branch=master]]
+* wow [[https://travis-ci.org/konr/shibeshibe.png?branch=master]]
 
 - 64 dogecoins
 - 1337 megacoins
