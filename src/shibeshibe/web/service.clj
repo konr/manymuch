@@ -1,4 +1,4 @@
-(ns shibeshibe.service
+(ns shibeshibe.web.service
   (:require [io.pedestal.service.http :as bootstrap]
             [io.pedestal.service.impl.interceptor :as ii]
             [io.pedestal.service.interceptor :as i]

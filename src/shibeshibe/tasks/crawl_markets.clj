@@ -1,4 +1,4 @@
-(ns shibeshibe.markets
+(ns shibeshibe.tasks.crawl-markets
   (:require [org.httpkit.client :as http]
             [swiss-arrows.core  :refer :all]
             [schema.core :as s]

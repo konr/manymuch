@@ -56,12 +56,12 @@ k♥t
   - [X] Euros
   - [X] Better UI
   - [X] Cron to update the database
-  - [ ] Extract core datomic stuff to another lib
   - [ ] Schemas
   - [ ] Tests
   - [ ] Travis
   - [ ] Market names as enums
   - [ ] Daily email
+  - [ ] Extract core datomic stuff to another lib
   - [ ] History and pretty graphs
   - [ ] Donate button with both coin (for BTC) and shibe
 

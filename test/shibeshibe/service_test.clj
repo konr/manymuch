@@ -2,7 +2,7 @@
   (:require [midje.sweet :refer :all]
             [io.pedestal.service.test :refer :all]
             [io.pedestal.service.http :as bootstrap]
-            [shibeshibe.service :as service]))
+            [shibeshibe.web.service :as service]))
 
 (def service
   (::bootstrap/service-fn (bootstrap/create-servlet service/service)))

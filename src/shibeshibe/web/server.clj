@@ -1,8 +1,8 @@
-(ns shibeshibe.server
+(ns shibeshibe.web.server
   (:require
    [io.pedestal.service-tools.server :as server]
    [io.pedestal.service-tools.dev :as dev]
-   [shibeshibe.service :as service]))
+   [shibeshibe.web.service :as service]))
 
 (defn run-dev
   "The entry-point for 'lein run-dev'"

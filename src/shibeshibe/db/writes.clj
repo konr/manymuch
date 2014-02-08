@@ -1,7 +1,7 @@
-(ns shibeshibe.writes
-  (:require [shibeshibe.markets :as mm]
+(ns shibeshibe.db.writes
+  (:require [shibeshibe.tasks.crawl-markets :as mm]
             [shibeshibe.datomic.core :as db]
-            [shibeshibe.reads :as reads]
+            [shibeshibe.db.reads :as reads]
             [shibeshibe.utils :refer :all]
             [midje.sweet :refer :all]))
 
