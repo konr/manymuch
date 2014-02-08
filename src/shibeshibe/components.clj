@@ -8,7 +8,7 @@
 
 (def default-db "datomic:free://localhost:4334/shibeshibe-3")
 
-(defn init-db! [uri]
+(defn bootstrap! [uri]
   (db/init-db!
    {:uri uri
     :extensions []
@@ -17,8 +17,8 @@
 
 
 (defn components [uri]
-  {:db     (db/connect! uri)
+  {:db     (db/from-uri uri)
    :server (apply server/create-server nil)})
 
-(defn gather-troops! [uri db]
+(defn gather-troops! []
   (alter-var-root system (constantly (components default-db))))
