@@ -59,4 +59,4 @@
               ::bootstrap/resource-path "/public"
               ::bootstrap/allowed-origins ["http://shibeshibe.com"]
               ::bootstrap/type :jetty
-              ::bootstrap/port 8082})
+              ::bootstrap/port 8080})
