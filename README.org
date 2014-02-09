@@ -64,6 +64,7 @@ k♥t
   - [ ] Extract core datomic stuff to another lib
   - [ ] History and pretty graphs
   - [ ] Donate button with both coin (for BTC) and shibe
+  - [ ] Remove pedestal's run-dev
 
 * [[http://www.bitcoinity.org/markets/list?currency=EUR&span=24h][Markets]] to support
   - [ ] mtgox (must get API key)
