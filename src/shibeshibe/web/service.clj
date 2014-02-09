@@ -21,7 +21,7 @@
 
 (defn update-db [context]
   {:status 200
-   :body (c/update-db)})
+   :body (c/update-db context)})
 
 (i/definterceptorfn admin-shibe [password]
   (i/interceptor
@@ -43,8 +43,11 @@
 (i/definterceptorfn catcher []
   (i/interceptor
    :error (fn [context error]
-            (ii/terminate (assoc context :response {:status 200
-                                                    :body (str "Oops! Couldn't parse the wallet, but I found this cute cat:\n" cat)})))))
+            (ii/terminate (assoc context :response
+                                 {:status 200
+                                  ;; FIX display the cat
+                                  ;; even in a 500 response
+                                  :body (str "Oops! Couldn't parse the wallet, but I found this cute cat:\n" cat)})))))
 
 
 (defroutes routes
