@@ -4,7 +4,7 @@
             [shibeshibe.models :as mo]))
 
 
-(def system (atom nil))
+(def system nil)
 
 (def default-db "datomic:free://localhost:4334/shibeshibe-3")
 
@@ -17,8 +17,8 @@
 
 
 (defn components [uri]
-  {:db     (db/from-uri uri)
-   :server (apply server/create-server nil)})
+  {:db     (atom (db/from-uri uri))
+   :server (atom (server/run-dev))}) ;; FIX
 
 (defn gather-troops! []
-  (alter-var-root system (constantly (components default-db))))
+  (alter-var-root #'system (constantly (components default-db))))
