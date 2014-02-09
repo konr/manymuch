@@ -34,14 +34,13 @@ Connecting to the local database
 k♥t
 #+END_SRC
 
-
 * Dedication
 
   Created for the benefit of all cryptocurrency enthusiasts, and to
   give some delight to those who delight in seeing cool technologies
   being used!
 
-* To do [14/22]
+* Roadmap for v1.0 [15/20]
   - [X] clean mess at core.clj
   - [X] figure out why -main isn't exiting to the shell
   - [X] Use org-mode instead of this stupid markdown
@@ -56,15 +55,19 @@ k♥t
   - [X] Euros
   - [X] Better UI
   - [X] Cron to update the database
-  - [ ] Schemas
+  - [X] Travis
+  - [ ] Extract core datomic stuff to a lib
   - [ ] Tests
-  - [ ] Travis
-  - [ ] Market names as enums
-  - [ ] Daily email
-  - [ ] Extract core datomic stuff to another lib
-  - [ ] History and pretty graphs
-  - [ ] Donate button with both coin (for BTC) and shibe
+  - [ ] Send Daily email
+  - [ ] JSON instead of text response
+  - [ ] CLJS front-end that displays the JSON
+  - [ ] DDG plugin
   - [ ] Remove pedestal's run-dev
+    
+* Roadmap for v2.0 [15/21]
+  - [ ] History
+  - [ ] Charts
+  - [ ] Support [[http://www.bitcoinity.org/markets/list?currency=EUR&span=24h][more markets]]
 
 * [[http://www.bitcoinity.org/markets/list?currency=EUR&span=24h][Markets]] to support
   - [ ] mtgox (must get API key)
