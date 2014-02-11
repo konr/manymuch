@@ -62,9 +62,10 @@
 
 
 (sm/defn resolve-tx :- ls/Eid
-  [tx     :- ls/TxResults
+  [db     :- ls/Database
+   tx     :- ls/TxResults
    tempid :- ls/Eid]
-  (d/resolve-tempid (db) (:tempids tx) tempid))
+  (d/resolve-tempid db (:tempids tx) tempid))
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Schema generation ;;

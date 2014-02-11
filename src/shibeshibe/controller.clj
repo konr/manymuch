@@ -1,5 +1,6 @@
 (ns shibeshibe.controller
   (:require [clojure.string :as str]
+            [shibeshibe.components :as com]
             [shibeshibe.db.writes :as writes]
             [shibeshibe.db.reads :as reads]))
 
@@ -10,10 +11,12 @@
 
 (defn parse-wallet [{:keys [wallet fiat]}]
   (->> (str/split wallet #" ")
-      tokens->wallet
-      (reads/appraise-wallet fiat)
-      with-out-str))
+       tokens->wallet
+       (reads/appraise-wallet fiat)
+       with-out-str))
 
-(defn update-db []
+(defn update-db [context]
   (println "Updating database")
-  (writes/read-sources!))
+  (-> context
+      (assoc ::com/system com/system)
+      writes/read-sources!))
