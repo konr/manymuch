@@ -43,8 +43,9 @@
 (i/definterceptorfn catcher []
   (i/interceptor
    :error (fn [context error]
+            (clojure.repl/pst)
             (ii/terminate (assoc context :response
-                                 {:status 200
+                                 {:status 500
                                   ;; FIX display the cat
                                   ;; even in a 500 response
                                   :body (str "Oops! Couldn't parse the wallet, but I found this cute cat:\n" cat)})))))

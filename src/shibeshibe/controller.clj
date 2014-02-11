@@ -1,6 +1,8 @@
 (ns shibeshibe.controller
   (:require [clojure.string :as str]
+            [shibeshibe.tasks.crawl-markets :as mm]
             [shibeshibe.components :as com]
+            [shibeshibe.datomic.core :as core]
             [shibeshibe.db.writes :as writes]
             [shibeshibe.db.reads :as reads]))
 
@@ -18,5 +20,7 @@
 (defn update-db [context]
   (println "Updating database")
   (-> context
-      (assoc ::com/system com/system)
-      writes/read-sources!))
+      (assoc ::core/connection (-> com/system :db deref :conn))
+      (assoc ::core/database   (-> com/system :db deref :conn core/connection->db))
+      (assoc ::mm/market (mm/get-market-data))
+      writes/write-market-data!))

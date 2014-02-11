@@ -38,7 +38,7 @@
   (stop [component]))
 
 
-(defn db [database] (d/db (:conn database)))
+(defn connection->db [connection] (d/db connection))
 
 (sm/defn init-db!
   [data :- {:uri s/String
@@ -94,15 +94,15 @@
 ;;;;;;;;;;;;;;;;
 
 (sm/defn eid->entity :- ls/Entity
-  [database :- ls/Database
+  [db  :- ls/Database
    eid :- ls/Eid]
-  (->> eid (d/entity (db))
+  (->> eid (d/entity db)
        seq (into {})))
 
 (sm/defn q :- ls/ResultSet
-  [database :- ls/Database
+  [db    :- ls/Database
    query :- ls/Query, & args]
-  (apply d/q query (db) args))
+  (apply d/q query db args))
 
 (sm/defn qe :- #{ls/Entity}
   [& args]
@@ -115,24 +115,24 @@
 ;; ---
 
 (sm/defn transact :- ls/TxResults
-  [database :- s/Any
+  [connection :- ls/Connection
    data :- [ls/Entity]]
-  (->> data (d/transact (:conn database)) deref))
+  (->> data (d/transact connection) deref))
 
 (sm/defn transact-one :- ls/Eid
-  [database :- ls/Database
+  [connection :- ls/Connection
    entity :- ls/Entity]
   (let [id (:db/id entity)
         tid (or id (tempid))
-        res (-> entity (assoc :db/id tid) vector (->> (transact database)))]
-    (or id (resolve-tx res tid))))
+        res (-> entity (assoc :db/id tid) vector (->> (transact connection)))]
+    (or id (resolve-tx (connection->db connection) res tid))))
 
 (sm/defn entity->eids :- [ls/Eid]
-  [database :- ls/Database
+  [db :- ls/Database
    entity :- ls/Entity]
-  (map first (q database {:find '[?e] :where (doall (for [[k v] entity] ['?e k v]))})))
+  (map first (q db {:find '[?e] :where (doall (for [[k v] entity] ['?e k v]))})))
 
 (sm/defn entity->eid :- ls/Eid
-  [database :- ls/Database
+  [db :- ls/Database
    entity   :- ls/Entity]
-  (first (entity->eids database entity)))
+  (first (entity->eids db entity)))

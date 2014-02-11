@@ -13,6 +13,7 @@
 
 (def Eid (from-class Long))
 (def Database (from-class datomic.db.Db))
+(def Connection (from-class datomic.peer.LocalConnection))
 (def ResultSet (from-class java.util.HashSet))
 
 (def TxResults
