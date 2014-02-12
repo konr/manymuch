@@ -20,8 +20,9 @@
        (catch Exception e "such_shibe")))
 
 (defn update-db [context]
+  (c/update-db context)
   {:status 200
-   :body (c/update-db context)})
+   :body "ok!"})
 
 (i/definterceptorfn admin-shibe [password]
   (i/interceptor

@@ -20,7 +20,7 @@
 (defn update-db [context]
   (println "Updating database")
   (-> context
-      (assoc ::core/connection (-> com/system :db deref :conn))
-      (assoc ::core/database   (-> com/system :db deref :conn core/connection->db))
+      (assoc ::core/connection (-> com/system :db :conn))
+      (assoc ::core/database   (-> com/system :db :conn core/connection->db))
       (assoc ::mm/market (mm/get-market-data))
       writes/write-market-data!))
